@@ -44,21 +44,18 @@ export const Body = () => {
   }, [])
 
   return (
-    <div className="bg-slate-200 h-screen overflow-scroll sm:overflow-hidden pb-28">
-      <div className="flex justify-center items-center text-2xl bg-neutral-800 border-white border-t  h-12  text-center font-semibold text-white">
-        <div class="text-gray-600 mx-40">
+    <div className="bg-slate-500 h-screen overflow-scroll lg:overflow-auto  pb-5 md:pb-10 ">
+      <div className="flex justify-center items-center text-2xl bg-neutral-800 border-white border-t  h-12 text-center font-semibold text-white">
+      <div class="flex text-gray-600 mx-40 w-screen justify-center items-center lg:px-96">
 
           <input
-            class="w-80  border-2 border-gray-300 bg-white h-9 px-3 rounded-lg text-sm focus:outline-none focus:border-gray-400"
+            class="w-80  lg:w-4/5 border-2 border-gray-300 bg-white h-9 px-3 rounded-lg text-sm focus:outline-none focus:border-gray-400"
             type="search"
             name="search"
             value={search}
             onChange={handle}
             placeholder="Buscar"
           />
-          <button
-            type="submit"
-            class="absolute right-0 top-0 mt-3 mr-4"></button>
         </div>
       </div>
       <div className="mt-5">
