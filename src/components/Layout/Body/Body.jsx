@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card } from "../Card/Card";
+import { toast } from 'react-toastify';
+import { getParticipants, postVotos } from "../../helpers/ApiRest";
 
 export const Body = () => {
 
@@ -10,7 +12,7 @@ export const Body = () => {
 
 
   const getPartcipe = async () => {
-    await axios.get('https://api-vote.up.railway.app/api/v1/participants')
+    await axios.get(getParticipants)
       .then(({ data }) => {
         setInformation(data)
         console.log(data);
@@ -26,10 +28,20 @@ export const Body = () => {
 
 
   const handleClick = async(id) => {
-    console.log(id);
-    await axios.patch(`https://api-vote.up.railway.app/api/v1/voters/${id}`)
+    // console.log(id);
+    await axios.patch(`${postVotos}/${id}`)
     .then((responde) => {
-      console.log(responde);
+      toast.success('¡Éxito!',{
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        className:"flex justify-center items-center"
+      });
     })
     .catch((err) => {
       console.log("servidor")
