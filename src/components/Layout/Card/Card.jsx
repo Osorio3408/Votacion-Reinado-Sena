@@ -10,7 +10,7 @@ export const Card = (props) => {
         <p class="mt-2 text-gray-600">{props.description}</p>
       </div>
       <div class=" px-6 py-4 text-center">
-        <BtnCard />
+        <BtnCard title={'Votar!'} />
       </div>
     </div>
   );
