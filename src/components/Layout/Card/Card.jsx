@@ -1,16 +1,18 @@
 import React from "react";
 import { BtnCard } from "../../ui/BtnCard/BtnCard";
 
-export const Card = (props) => {
+export const Card = ({name, image,handleClick, id}) => {
   return (
     <div class="bg-gray-200 flex  md:w-1/4 items-center flex-col rounded-lg shadow-xl overflow-hidden p-4">
-      <div className="bg-slate-800 rounded-md w-72 h-48 object-cover"></div>
+      <div className="rounded-md w-72 h-48">
+        <img src={image} className='w-full h-full object-cover' alt="jajaj" />
+      </div>
       <div class="py-4 px-6">
-        <h2 class="text-2xl font-bold text-gray-800">{props.name}</h2>
-        <p class="mt-2 text-gray-600">{props.description}</p>
+        <h2 class="text-2xl font-bold text-gray-800">{name}</h2>
+        <p class="mt-2 text-gray-600"></p>
       </div>
       <div class=" px-6 py-4 text-center">
-        <BtnCard title={'Votar!'} />
+        <BtnCard handleClick={handleClick} id={id} title={'Votar!'} />
       </div>
     </div>
   );
