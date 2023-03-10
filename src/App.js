@@ -1,15 +1,15 @@
 import "./App.css";
 import { Body } from "./components/Layout/Body/Body";
 import { Header } from "./components/Layout/Header/Header";
+import { Validation } from "./components/Pages/Validation/Validation";
 
 function App() {
   return (
-    <div className="md:bg-black">
+    <>
       <Header />
-      <Body />
-    </div>
+      <Validation />
+    </>
   );
 }
 
 export default App;
-
