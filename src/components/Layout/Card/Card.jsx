@@ -1,7 +1,7 @@
 import React from "react";
 import { BtnCard } from "../../ui/BtnCard/BtnCard";
 
-export const Card = ({name, image,handleClick, id}) => {
+export const Card = ({name, image,handleClick, id, acti_desact}) => {
   return (
     <div class="bg-gray-200 flex  md:w-1/4 items-center flex-col rounded-lg shadow-xl overflow-hidden p-4">
       <div className="rounded-md w-72 h-48">
@@ -12,7 +12,7 @@ export const Card = ({name, image,handleClick, id}) => {
         <p class="mt-2 text-gray-600"></p>
       </div>
       <div class=" px-6 py-4 text-center">
-        <BtnCard handleClick={handleClick} id={id} title={'Votar!'} />
+        <BtnCard handleClick={handleClick} acti_desact={acti_desact} id={id} title={'Votar!'} />
       </div>
     </div>
   );

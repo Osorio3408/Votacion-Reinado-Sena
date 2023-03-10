@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <App />
     <div className='flex justify-center items-center text-lg h-1 w-40 lg:w-full'>
-    < ToastContainer/>
+    < ToastContainer className='flex justify-center items-center'/>
     </div>
   </React.StrictMode>
 );
