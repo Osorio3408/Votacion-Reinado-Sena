@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Footer } from "../../Layout/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { VerifyUsers } from "../../helpers/ApiRest";
+import { toast } from "react-toastify";
+import { OptionsAlert } from "../../helpers/ToastResp";
 
 export const Validation = () => {
 
@@ -13,14 +15,18 @@ export const Validation = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     // Lógica para procesar el envío del formulario aquí
-    // await axios.get('https://api-vote.up.railway.app/api/v1', idNumber)
-    // .then((responde) =>{
-    //   console.log(responde);
-      localStorage.setItem('id_votante', JSON.stringify(idNumber))
-      navigate('/card')
-    // }).catch((err) =>{
-    //   console.log(err);
-    // })
+    await axios.get(`${VerifyUsers}/${idNumber}`)
+    .then(({data}) =>{
+      console.log(data)
+      if (data.status === false) {
+        toast.error('Perdon tu ya votaste', OptionsAlert)
+      }else{
+        localStorage.setItem('id_votante', JSON.stringify(idNumber))
+        navigate('/card')
+      }
+    }).catch((err) =>{
+      toast.error('No estas ingresado en el sena', OptionsAlert)
+    })
   };
 
   return (

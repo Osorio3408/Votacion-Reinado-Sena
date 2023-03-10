@@ -15,8 +15,6 @@ export const Body = () => {
   const [information, setInformation] = useState([])
   const [search, setSearch] = useState("")
   const [isloading, setIsloading] = useState(true)
-  const [botonActive, setBotonsActive] = useState(true)
-  const [idVotante, setIdVotante] = useState('')
 
   const getPartcipe = async () => {
     await axios
@@ -35,46 +33,25 @@ export const Body = () => {
   }
 
   const handleClick = async (id) => {
-    await axios.patch(`${postVotos}/${id}`)
+    let userId = JSON.parse(localStorage.getItem('id_votante'))
+    await axios.patch(`${postVotos}/${id}/${userId}`)
       .then((responde) => {
-        ChangeStatus()
+        toast.success('Gracias por votar!', OptionsAlert);
+        localStorage.removeItem('id_votante')
+        navigate('/')
       })
       .catch((err) => {
-        console.log("servidor")
+        console.log(err)
       })
-  }
-
-  const ChangeStatus = async () => {
-    let userId = JSON.parse(localStorage.getItem('id_votante'))
-    // await axios.patch("https://api-vote.up.railway.app/api/v1", userId)
-    // .then((responde) =>{
-    //   console.log(responde);
-    toast.success('¡Éxito!', OptionsAlert);
-    navigate('/')
-    alert(userId)
-    localStorage.removeItem('id_votante')
-    // })
-  }
-
-  // creo que es inecesario
-  const getAuth = () => {
-    if ("values" === '1094884731') {
-      setBotonsActive(false)
-    } else {
-      setBotonsActive(true)
-    }
   }
 
   useEffect(() => {
     let userId = JSON.parse(localStorage.getItem('id_votante'))
     if (userId === null) {
       navigate('/')
+    }else{
+      getPartcipe()
     }
-  }, [])
-
-  useEffect(() => {
-    getAuth()
-    getPartcipe()
   }, [])
 
   const result = !search
@@ -114,7 +91,6 @@ export const Body = () => {
                     image={data.image}
                     id={data._id}
                     handleClick={handleClick}
-                    acti_desact={botonActive}
                     description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
             culpa tenetur fugiat quo illo nesciunt quam nemo aliquam, quia quis odit
           ea sint quas, dicta ad debitis placeat! Iste, provident."
