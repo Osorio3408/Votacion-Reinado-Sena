@@ -1,16 +1,21 @@
 import "./App.css";
 import { Body } from "./components/Layout/Body/Body";
 import { Header } from "./components/Layout/Header/Header";
-
+import { Validation } from "./components/Pages/Validation/Validation";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="md:bg-white">
+    <div>
       <Header />
-      <Body />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Validation />} />
+          <Route path="/card" element={<Body />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
 
 export default App;
-
