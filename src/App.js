@@ -1,5 +1,6 @@
 import "./App.css";
 import { Body } from "./components/Layout/Body/Body";
+import { Footer } from "./components/Layout/Footer/Footer";
 import { Header } from "./components/Layout/Header/Header";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="md:bg-black">
       <Header />
       <Body />
+      <Footer/>
     </div>
   );
 }
