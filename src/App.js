@@ -4,7 +4,7 @@ import { Header } from "./components/Layout/Header/Header";
 
 function App() {
   return (
-    <div className="md:bg-black">
+    <div className="">
       <Header />
       <Body />
     </div>
