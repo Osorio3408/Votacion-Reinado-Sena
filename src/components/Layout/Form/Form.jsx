@@ -25,6 +25,7 @@ export const Form = () => {
             .then((response) =>{
                 console.log(response);
             }).catch((err) =>{
+                alert("no se creo")
                 console.log(err);
             })
 
