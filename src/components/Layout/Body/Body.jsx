@@ -10,12 +10,11 @@ import { useNavigate } from "react-router-dom";
 
 
 export const Body = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const [information, setInformation] = useState([])
-  const [search, setSearch] = useState("")
-  const [isloading, setIsloading] = useState(true)
+  const [information, setInformation] = useState([]);
+  const [search, setSearch] = useState("");
+  const [isloading, setIsloading] = useState(true);
 
   //duncion que pide los datos
   const getPartcipe = async () => {
@@ -24,51 +23,52 @@ export const Body = () => {
       .then(({ data }) => {
         setInformation(data)
         setIsloading(false)
-        localStorage.setItem('data', JSON.stringify(data))
-
       })
       .catch((err) => {
-        console.log("servidor")
-      })
+        console.log("servidor");
+      });
+  };
+
+  const handle = (e) => {
+    setSearch(e.target.value)
   }
 
-  //funcion para que vote
   const handleClick = async (id) => {
-    let userId = JSON.parse(localStorage.getItem('id_votante'))
-    await axios.patch(`${postVotos}/${id}/${userId}`)
+    let userId = JSON.parse(localStorage.getItem("id_votante"));
+    await axios
+      .patch(`${postVotos}/${id}/${userId}`)
       .then((responde) => {
-        toast.success('Gracias por votar!', OptionsAlert);
-        localStorage.removeItem('id_votante')
-        navigate('/')
+        toast.success("Gracias por votar!", OptionsAlert);
+        localStorage.removeItem("id_votante");
+        navigate("/");
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   //peticion de los datos y restincion
   useEffect(() => {
-    let userId = JSON.parse(localStorage.getItem('id_votante'))
+    let userId = JSON.parse(localStorage.getItem("id_votante"));
     if (userId === null) {
-      navigate('/')
-    }else{
-      getPartcipe()
+      navigate("/");
+    } else {
+      getPartcipe();
     }
-  }, [])
+  }, []);
 
   //filtro
   const result = !search
     ? information
     : information.filter((data) =>
-      data.name.toLowerCase().includes(search.toLowerCase())
-    );
-
+        data.name.toLowerCase().includes(search.toLowerCase())
+      );
 
   return (
     <>
-      {isloading ?
+      {isloading ? (
         <Loading />
-        :
+      ) : (
         <div>
           <div className="bg-slate-500 h-screen overflow-auto md:overflow-auto ">
           <div className="flex justify-center items-center text-2xl bg-neutral-800 border-white border-t mt-14 lg:mt-24 h-12 text-center font-semibold text-white">
@@ -78,7 +78,7 @@ export const Body = () => {
                 type="search"
                 name="search"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={handle}
                 placeholder="Buscar"
               />
             </div>
@@ -99,17 +99,13 @@ export const Body = () => {
             culpa tenetur fugiat quo illo nesciunt quam nemo aliquam, quia quis odit
           ea sint quas, dicta ad debitis placeat! Iste, provident."
                   />
-                ))
-              }
-               
+                ))}
+              </div>
             </div>
+            <Footer />
           </div>
-          <Footer/>
         </div>
-        
-        </div>
-      }
-
+      )}
     </>
   );
 };

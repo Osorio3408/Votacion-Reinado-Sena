@@ -1,27 +1,32 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 export const Form = () => {
 
-    const [values, setValues] = useState({
-        id: '',
-        state: ''
-    })
+    const [document, setDocument] = useState('')
+
+    const [status, setStatus] = useState(true);
+
+
 
     const handle = (e) =>{
-        const {name, value} = e.target
-        setValues({
-            ...values,
-            [name]: value
-        })
+        setDocument(e.target.value)
     }
 
-    const handleSubmit = (e) => {
+    const handleSelectChange = (e) => {
+        setStatus(e.target.value);
+    };
+
+
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        if (values.state === 'true' || values.state === 'false') {
-            console.log(values);
-        }else{
-            alert('debes escoger una')
-        }
+        console.log(document);
+            await axios.post('https://api-vote.up.railway.app/api/v1/voters', {document, status})
+            .then((response) =>{
+                console.log(response);
+            }).catch((err) =>{
+                console.log(err);
+            })
 
     }
 
@@ -38,16 +43,15 @@ export const Form = () => {
                             className="shadow appearance-none border rounded w-full mt-2 py-3 lg:py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="idNumber"
                             type="number"
-                            name='id'
+                            name='document'
                             placeholder="Número de identificación"
-                            value={values.id}
+                            value={document}
                             onChange={handle}
                             required
                         />
-                        <select id="opciones" name='state' value={values.state} onChange={handle} className="shadow appearance-none border rounded w-full mt-2 py-3 lg:py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            <option value="">Escoge tu estado</option>
-                            <option value="true">True</option>
-                            <option value="false">False</option>
+                        <select value={status} onChange={handleSelectChange} className="shadow appearance-none border rounded w-full mt-2 py-3 lg:py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value={true}>True</option>
+                            <option value={false}>False</option>
                         </select>
                     </div>
                     <div className="flex justify-center">
