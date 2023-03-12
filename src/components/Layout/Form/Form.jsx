@@ -24,6 +24,7 @@ export const Form = () => {
             await axios.post('https://api-vote.up.railway.app/api/v1/voters', {document, status})
             .then((response) =>{
                 console.log(response);
+                setDocument('')
             }).catch((err) =>{
                 alert("no se creo")
                 console.log(err);
