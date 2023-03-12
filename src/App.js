@@ -3,6 +3,8 @@ import { Body } from "./components/Layout/Body/Body";
 import { Header } from "./components/Layout/Header/Header";
 import { Validation } from "./components/Pages/Validation/Validation";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ResultCard } from "./components/Layout/ResulCard/ResultCard";
+import { Form } from "./components/Layout/Form/Form";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Validation />} />
           <Route path="/card" element={<Body />} />
+          <Route path="/Form" element={<Form />} />
+          <Route path="/result" element={<ResultCard />} />
         </Routes>
       </Router>
     </div>

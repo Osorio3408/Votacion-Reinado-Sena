@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { BtnCard } from "../../ui/BtnCard/BtnCard";
+import ClipLoader from "react-spinners/ClipLoader";
 
-export const Card = ({name, image,handleClick, id}) => {
+
+export const Card = ({ name, image, handleClick, id }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setIsLoaded(true);
+  }
+
+
   return (
     <div class="bg-slate-50 flex  md:w-1/4 items-center flex-col rounded-lg shadow-neutral-800 shadow-lg overflow-hidden p-4">
       <div className="rounded-md w-72 h-48">
-        <img src={image} className="w-full h-full object-cover" alt="jajaj" />
+        {!isLoaded && (
+          <div className="flex justify-center items-center h-full">
+            <ClipLoader
+              color='black'
+              size={100}/>
+          </div>
+        )}
+        <img src={image} className="w-full h-full object-cover" onLoad={handleImageLoad} alt="jajaj" />
       </div>
       <div class="py-4 px-6">
         <h2 class="text-2xl font-bold text-neutral-900">{name}</h2>

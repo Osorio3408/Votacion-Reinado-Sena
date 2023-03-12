@@ -8,6 +8,7 @@ import { Loading } from "../../ui/Loading/Loading";
 import { OptionsAlert } from "../../helpers/ToastResp";
 import { useNavigate } from "react-router-dom";
 
+
 export const Body = () => {
 
   const navigate = useNavigate()
@@ -16,22 +17,22 @@ export const Body = () => {
   const [search, setSearch] = useState("")
   const [isloading, setIsloading] = useState(true)
 
+  //duncion que pide los datos
   const getPartcipe = async () => {
     await axios
       .get(getParticipants)
       .then(({ data }) => {
         setInformation(data)
         setIsloading(false)
+        localStorage.setItem('data', JSON.stringify(data))
+
       })
       .catch((err) => {
         console.log("servidor")
       })
   }
 
-  const handle = (e) => {
-    setSearch(e.target.value)
-  }
-
+  //funcion para que vote
   const handleClick = async (id) => {
     let userId = JSON.parse(localStorage.getItem('id_votante'))
     await axios.patch(`${postVotos}/${id}/${userId}`)
@@ -45,6 +46,7 @@ export const Body = () => {
       })
   }
 
+  //peticion de los datos y restincion
   useEffect(() => {
     let userId = JSON.parse(localStorage.getItem('id_votante'))
     if (userId === null) {
@@ -54,6 +56,7 @@ export const Body = () => {
     }
   }, [])
 
+  //filtro
   const result = !search
     ? information
     : information.filter((data) =>
@@ -75,7 +78,7 @@ export const Body = () => {
                 type="search"
                 name="search"
                 value={search}
-                onChange={handle}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Buscar"
               />
             </div>
