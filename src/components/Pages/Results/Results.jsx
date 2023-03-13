@@ -25,7 +25,7 @@ export const Results = () => {
 
   useEffect(() => {
     getPartcipe();
-  }, [datos]);
+  }, []);
 
   const data = {
     labels: datos.map((categoria) => {
