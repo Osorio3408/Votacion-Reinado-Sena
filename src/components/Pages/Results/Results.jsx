@@ -19,14 +19,17 @@ export const Results = () => {
         setDatos(data);
       })
       .catch((err) => {
-        console.log("servidor");
+        console.log(`Servidor ${err}`);
       });
   };
 
   useEffect(() => {
     getPartcipe();
+    const interval = setInterval(() => {
+      getPartcipe();
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
-
   const data = {
     labels: datos.map((categoria) => {
       return categoria.name;

@@ -15,11 +15,11 @@ export const Validation = () => {
     e.preventDefault();
     // Lógica para procesar el envío del formulario aquí
     if (idNumber !== "") {
-      if (idNumber === '5551') {
-        navigate('/results')
-      }else if(idNumber === '123'){
-        navigate('/form')
-      }else{
+      if (idNumber === "5551") {
+        navigate("/results");
+      } else if (idNumber === "123") {
+        navigate("/form");
+      } else {
         await axios
           .get(`${VerifyUsers}/${idNumber}`)
           .then(({ data }) => {
@@ -43,13 +43,12 @@ export const Validation = () => {
   return (
     <div>
       <div className=" bg-gray-100 flex flex-col justify-center items-center h-screen p-5">
-        <div className="bg-white lg:w-2/5 lg:h-4/6 p-10 lg:mt-20 md:mt-0 rounded-lg shadow-slate-500 shadow-lg">
+        <div className="bg-white lg:w-2/5 p-10 lg:mt-20 md:mt-0 rounded-lg shadow-slate-500 shadow-lg">
           <h1 className="text-lg lg:text-3xl font-semibold text-center mb-10">
-            ¡<strong>Bienvenido/a</strong> al reinado! Estamos muy
-            emocionados/as de que estés aquí para elegir a la próxima reina.
-            Para comenzar, por favor ingresa tu número de identificación en el
-            espacio a continuación y presiona el botón "Ingresar" para poder
-            acceder a la votación. ¡Gracias por ser parte de este gran evento!
+            <strong>¡Bienvenido/a al reinado!</strong> Para comenzar, por favor
+            ingresa el número de identificación en el espacio a continuación y
+            presiona el botón "Ingresar" para poder acceder a la votación.
+            ¡Gracias por ser parte de este gran evento!
           </h1>
           <form onSubmit={handleSubmit}>
             <div className="lg:mt-16 mt-10 mb-2 lg:mb-8">
