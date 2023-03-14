@@ -1,44 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Footer } from "../../Layout/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { VerifyUsers } from "../../helpers/ApiRest";
 import { toast } from "react-toastify";
 import { OptionsAlert } from "../../helpers/ToastResp";
+import { BtnForm } from '../../ui/BtnCard/BtnCard'
 
 export const Validation = () => {
   const navigate = useNavigate();
 
   const [idNumber, setIdNumber] = useState("");
+  const [isBtn, setIsBtn] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Lógica para procesar el envío del formulario aquí
     if (idNumber !== "") {
+      setIsBtn(true)
       if (idNumber === "5551") {
-        navigate("/results");
+        setTimeout(() => {
+          setIsBtn(false)
+          navigate("/results");
+        }, 1000);
       } else if (idNumber === "123") {
-        navigate("/form");
+        setTimeout(() => {
+          setIsBtn(false)
+          navigate("/form");
+        }, 1000)
       } else {
         await axios
           .get(`${VerifyUsers}/${idNumber}`)
           .then(({ data }) => {
-            console.log(data);
             if (data.status === false) {
               toast.error("Perdon tu ya votaste", OptionsAlert);
             } else {
               localStorage.setItem("id_votante", JSON.stringify(idNumber));
               navigate("/card");
+              setIsBtn(false)
             }
           })
           .catch((err) => {
-            toast.error("No estas ingresado en el sena", OptionsAlert);
+            setTimeout(() => {
+              setIsBtn(false)
+              toast.error("No estas ingresado en el sena", OptionsAlert);
+            }, 1000);
           });
       }
     } else {
       toast.error("Ingresa tú número de indentificación!", OptionsAlert);
     }
   };
+
+  useEffect(() =>{
+    let userId = JSON.parse(localStorage.getItem("id_votante"));
+    if (userId > 0) {
+      navigate("/card");
+    }
+  },[])
 
   return (
     <div>
@@ -67,11 +86,13 @@ export const Validation = () => {
               />
             </div>
             <div className="flex justify-center">
+              {isBtn ? <BtnForm /> :
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold lg:py-3 lg:px-12 py-2 px-10 mt-8 rounded-md focus:outline-none focus:shadow-outline"
+                className="bg-green-600 hover:bg-green-700 text-white font-bold lg:py-3 lg:px-12 py-2 px-10 mt-8 rounded-md focus:outline-none focus:shadow-outline"
                 type="submit">
                 Ingresar
               </button>
+              }
             </div>
           </form>
         </div>

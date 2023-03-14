@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import axios from "axios";
@@ -7,6 +8,7 @@ import { Loading } from "../../ui/Loading/Loading";
 import { Footer } from "../../Layout/Footer/Footer";
 
 export const Results = () => {
+  const navigate = useNavigate()
   const [datos, setDatos] = useState([]);
   const [isloading, setIsloading] = useState(true);
 
@@ -24,12 +26,18 @@ export const Results = () => {
   };
 
   useEffect(() => {
-    getPartcipe();
-    const interval = setInterval(() => {
+    let userId = JSON.parse(localStorage.getItem("id_votante"));
+    if (userId === null) {
+      navigate("/");
+    }else{
       getPartcipe();
-    }, 5000);
-    return () => clearInterval(interval);
+      // const interval = setInterval(() => {
+      //   getPartcipe();
+      // }, 5000);
+      // return () => clearInterval(interval);
+    }
   }, []);
+
   const data = {
     labels: datos.map((categoria) => {
       return categoria.name;

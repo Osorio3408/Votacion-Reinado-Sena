@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 export const Form = () => {
 
     const [document, setDocument] = useState('')
-
     const [status, setStatus] = useState(true);
 
 
