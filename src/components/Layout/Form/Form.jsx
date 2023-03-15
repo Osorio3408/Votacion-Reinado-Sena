@@ -1,12 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { OptionsAlert } from "../../helpers/ToastResp";
 
 export const Form = () => {
 
     const [document, setDocument] = useState('')
     const [status, setStatus] = useState(true);
-
-
 
     const handle = (e) => {
         setDocument(e.target.value)
@@ -23,9 +23,10 @@ export const Form = () => {
         await axios.post('https://api-vote.up.railway.app/api/v1/voters', { document, status })
             .then((response) => {
                 console.log(response);
+                toast.success('se guardo', OptionsAlert)
                 setDocument('')
             }).catch((err) => {
-                alert("no se creo")
+                toast.error('error', OptionsAlert)
                 console.log(err);
             })
 
@@ -69,28 +70,31 @@ export const Form = () => {
 }
 
 export const FormPar = () => {
-    const [file, setFile] = useState(null);
+    const [image, setImage] = useState(null);
     const [name, setName] = useState('')
 
     const handleFile = (e) => {
-        setFile(e.target.files[0]);
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setImage(reader.result);
+        };
     };
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('image', file);
-        formData.append('name', name);
-        console.log(formData);
-        // await axios.post('https://api-vote.up.railway.app/api/v1/voters', { document, status })
-        //     .then((response) => {
-        //         console.log(response);
-        //         setDocument('')
-        //     }).catch((err) => {
-        //         alert("no se creo")
-        //         console.log(err);
-        //     })
+        await axios.post('https://projectvotessena.azurewebsites.net/api/v1/participants', { name, image })
+            .then((response) => {
+                console.log(response);
+                toast.success('Se guardo', OptionsAlert)
+                setImage(null)
+                setName('')
+            }).catch((err) => {
+                console.log(err);
+                toast.error('Paso algo', OptionsAlert)
+            })
 
     }
 

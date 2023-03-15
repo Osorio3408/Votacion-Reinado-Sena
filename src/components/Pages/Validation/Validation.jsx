@@ -35,7 +35,7 @@ export const Validation = () => {
           .get(`${VerifyUsers}/${idNumber}`)
           .then(({ data }) => {
             if (data.status === false) {
-              toast.error("Perdon tu ya votaste", OptionsAlert);
+              toast.error("Perdón, tú ya votaste!!", OptionsAlert);
               setIsBtn(false)
             } else {
               localStorage.setItem("id_votante", JSON.stringify(idNumber));
@@ -46,13 +46,13 @@ export const Validation = () => {
           .catch((err) => {
             setTimeout(() => {
               setIsBtn(false)
-              toast.error("No estas ingresado en el sena", OptionsAlert);
+              toast.error("No estás ingresado en el Sena!!", OptionsAlert);
             }, 1000);
           });
       }
     } else {
        setIsBtn(false)
-      toast.error("Ingresa tú número de indentificación!", OptionsAlert);
+      toast.error("Ingresa tú número de indentificación!!", OptionsAlert);
     }
   };
 
