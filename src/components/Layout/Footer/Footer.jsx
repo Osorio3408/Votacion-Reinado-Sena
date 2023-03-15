@@ -21,10 +21,10 @@ export const Footer = () => {
         </div>
         <hr class="my-2 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-2" />
         <div className="flex flex-col">
-          <span class="flex justify-center px-4 mt-5 lg:mt-0  lg:text-2xl self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-            Equipo de trabajo:
+          <span class="flex justify-center underline px-4 mt-5 lg:mt-0  lg:text-2xl self-center text-xl font-semibold whitespace-nowrap dark:text-slate-300 hover:text-slate-400">
+            <a href="/Profile"> Equipo de trabajo</a>
           </span>
-          <div class="grid grid-cols-1 gap-8 px-6 py-1 mt-5">
+          {/* <div class="grid grid-cols-1 gap-8 px-6 py-1 mt-5">
             <ul class="flex flex-wrap justify-center items-center text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
               <li>
                 <Link to="https://github.com/Osorio3408" class="mr-4 text-base lg:text-lg hover:underline md:mr-6">
@@ -47,7 +47,7 @@ export const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className="mt-2">
             <hr class="my-2 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-2" />
             <span class="flex justify-center text-sm text-gray-500 sm:text-center dark:text-gray-400">

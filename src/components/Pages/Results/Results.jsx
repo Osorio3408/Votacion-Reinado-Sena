@@ -8,15 +8,14 @@ import { Loading } from "../../ui/Loading/Loading";
 import { Footer } from "../../Layout/Footer/Footer";
 import io from "socket.io-client";
 
-const socket = io('https://socket-api-vote.up.railway.app')
+const socket = io("https://socket-api-vote.up.railway.app");
 
 export const Results = () => {
   const navigate = useNavigate();
   const [datos, setDatos] = useState([]);
   const [isloading, setIsloading] = useState(true);
 
-
-  socket.on('participants', (participants) => setDatos(participants))
+  socket.on("participants", (participants) => setDatos(participants));
 
   //funcion que pide los datos
   const getPartcipe = async () => {
@@ -36,7 +35,7 @@ export const Results = () => {
     // if (userId === null) {
     //   navigate("/");
     // } else {
-      getPartcipe();
+    getPartcipe();
     // }
   }, []);
 
@@ -78,7 +77,7 @@ export const Results = () => {
         <Loading />
       ) : (
         <div className="bg-gray-100 min-h-screen">
-          <div className="max-w-7xl mx-auto py-24 px-5 sm:px-6 lg:px-8 pt-40 lg:mb-32">
+          <div className="max-w-7xl mx-auto py-32 px-5 sm:px-6 lg:px-8 pt-40 lg:mb-32">
             <h1 className="text-3xl font-bold mb-4">
               Resultados de la votación:
             </h1>
