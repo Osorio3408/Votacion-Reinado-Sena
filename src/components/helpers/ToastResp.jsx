@@ -11,11 +11,12 @@ export const OptionsAlert = {
 };
 
 export const OptionsSweetAlert = {
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'question',
+  title: "Estás seguro/a?",
+  text: "¡No podrás revertir esto!",
+  icon: "question",
   showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
+  cancelButtonColor: "#d33",
+  confirmButtonColor: "#16A34A",
+  cancelButtonText: "VOLVER",
+  confirmButtonText: "VOTAR",
 };
