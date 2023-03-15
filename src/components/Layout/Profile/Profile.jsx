@@ -92,7 +92,7 @@ export const Profile = () => {
         ))}
         <div className="px-8 rounded-md absolute bottom-40 bg-green-600 py-2">
           {" "}
-          <a href="/" className=" w-16 h-10">
+          <a href="/" className="text-black font-bold w-16 h-10">
             Volver
           </a>
         </div>
