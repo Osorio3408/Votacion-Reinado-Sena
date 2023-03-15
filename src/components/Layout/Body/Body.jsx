@@ -50,7 +50,7 @@ export const Body = () => {
             localStorage.removeItem("id_votante");
           })
           .catch((err) => {
-            console.log(err);
+            toast.error('Algo salio mal, Intenta de nuevo!!', OptionsAlert)
           });
       }
     })
@@ -60,7 +60,7 @@ export const Body = () => {
     if (showComponent) {
       setTimeout(() => {
         setShowComponent(false);
-        toast.success("gracias por tu voto", OptionsAlert)
+        toast.success("Gracias por tú voto", OptionsAlert)
         navigate('/')
       }, 1000);
 
