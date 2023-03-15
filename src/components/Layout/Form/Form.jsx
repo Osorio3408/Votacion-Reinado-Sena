@@ -107,7 +107,7 @@ export const FormPar = () => {
                             id="text"
                             type="text"
                             name='text'
-                            placeholder="Número de identificación"
+                            placeholder="Número tu Nombre"
                             onChange={(e) => setName(e.target.value)}
                             required
                         />

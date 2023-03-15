@@ -6,11 +6,17 @@ import axios from "axios";
 import { getParticipants } from "../../helpers/ApiRest";
 import { Loading } from "../../ui/Loading/Loading";
 import { Footer } from "../../Layout/Footer/Footer";
+import io from "socket.io-client";
+
+const socket = io('https://socket-api-vote.up.railway.app')
 
 export const Results = () => {
   const navigate = useNavigate();
   const [datos, setDatos] = useState([]);
   const [isloading, setIsloading] = useState(true);
+
+
+  socket.on('participants', (participants) => setDatos(participants))
 
   //funcion que pide los datos
   const getPartcipe = async () => {
@@ -26,12 +32,12 @@ export const Results = () => {
   };
 
   useEffect(() => {
-    let userId = JSON.parse(localStorage.getItem("id_votante"));
-    if (userId === null) {
-      navigate("/");
-    } else {
+    // let userId = JSON.parse(localStorage.getItem("id_votante"));
+    // if (userId === null) {
+    //   navigate("/");
+    // } else {
       getPartcipe();
-    }
+    // }
   }, []);
 
   const data = {

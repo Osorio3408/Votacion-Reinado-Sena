@@ -12,11 +12,13 @@ import { HomeEs } from "../HomeEs/HomeEs";
 import io from "socket.io-client";
 const Swal = require('sweetalert2')
 
-const socket = io('https://projectvotessena.azurewebsites.net')
+const socket = io('https://socket-api-vote.up.railway.app')
 
 
 export const Body = () => {
   const navigate = useNavigate();
+
+  const status = true;
 
   const [information, setInformation] = useState([]);
   const [search, setSearch] = useState("");
@@ -43,6 +45,7 @@ export const Body = () => {
         await axios
           .patch(`${postVotos}/${id}/${userId}`)
           .then((responde) => {
+            socket.emit('status', status);
             setShowComponent(true);
             localStorage.removeItem("id_votante");
           })
