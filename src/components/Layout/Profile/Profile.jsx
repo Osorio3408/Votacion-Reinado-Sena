@@ -1,4 +1,7 @@
 import react_node from "../../assets/react_node.jpg";
+import react_c from "../../assets/react_c.jpg";
+import typerscript_node from "../../assets/typerscript_node.jpg";
+import react from "../../assets/react.jpg";
 
 export const Profile = () => {
   const data = [
@@ -10,7 +13,7 @@ export const Profile = () => {
       redes: [],
     },
     {
-      backgroundImgae: `${react_node}`,
+      backgroundImgae: `${react_c}`,
       image: "",
       name: "Yuliam Andrey Osorio",
       rol: "frontend",
@@ -21,14 +24,14 @@ export const Profile = () => {
       ],
     },
     {
-      backgroundImgae: `${react_node}`,
+      backgroundImgae: `${typerscript_node}`,
       image: "",
       name: "Jeison Rua",
       rol: "backend",
       redes: [],
     },
     {
-      backgroundImgae: `${react_node}`,
+      backgroundImgae: `${react}`,
       image: "",
       name: "Juan Pablo Aranda",
       rol: "frontend",
@@ -39,7 +42,7 @@ export const Profile = () => {
   return (
     <div className="h-screen w-screen pt-96 md:pt-0">
       <div className="flex justify-center items-center mb-40 md:mb-0">
-        <h1 className="text-4xl md:text-6xl font-black absolute top-32 md:top-44">
+        <h1 className="text-4xl md:text-6xl font-black absolute top-36 md:top-44">
           Equipo de desarrollo
         </h1>
       </div>
