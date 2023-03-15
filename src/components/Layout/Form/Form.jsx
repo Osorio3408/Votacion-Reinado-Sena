@@ -85,16 +85,17 @@ export const FormPar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('https://projectvotessena.azurewebsites.net/api/v1/participants', { name, image })
-            .then((response) => {
-                console.log(response);
-                toast.success('Se guardo', OptionsAlert)
-                setImage(null)
-                setName('')
-            }).catch((err) => {
-                console.log(err);
-                toast.error('Paso algo', OptionsAlert)
-            })
+        console.log(image);
+        // await axios.post('https://projectvotessena.azurewebsites.net/api/v1/participants', { name, image })
+        //     .then((response) => {
+        //         console.log(response);
+        //         toast.success('Se guardo', OptionsAlert)
+        //         setImage(null)
+        //         setName('')
+        //     }).catch((err) => {
+        //         console.log(err);
+        //         toast.error('Paso algo', OptionsAlert)
+        //     })
 
     }
 

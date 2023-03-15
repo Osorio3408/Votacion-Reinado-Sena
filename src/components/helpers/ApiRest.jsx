@@ -1,4 +1,4 @@
-const host = "https://projectvotessena.azurewebsites.net/api/v1"
+const host = "https://api-vote-production.up.railway.app/api/v1"
 
 export const getParticipants = `${host}/participants`
 export const postVotos = `${host}/voters`
