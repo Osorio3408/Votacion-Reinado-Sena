@@ -4,7 +4,7 @@ import { Header } from "./components/Layout/Header/Header";
 import { Validation } from "./components/Pages/Validation/Validation";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Results } from "./components/Pages/Results/Results";
-import { Form } from "./components/Layout/Form/Form";
+import { Form, FormPar } from "./components/Layout/Form/Form";
 import { Profile } from "./components/Layout/Profile/Profile";
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
           <Route path="/card" element={<Body/>} />
           <Route path="/results" element={<Results />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/formPar" element={<FormPar />} />
           <Route path="/Profile" element={<Profile />} />
         </Routes>
       </Router>
