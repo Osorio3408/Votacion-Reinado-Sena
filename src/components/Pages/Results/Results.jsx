@@ -31,10 +31,6 @@ export const Results = () => {
       navigate("/");
     }else{
       getPartcipe();
-      // const interval = setInterval(() => {
-      //   getPartcipe();
-      // }, 5000);
-      // return () => clearInterval(interval);
     }
   }, []);
 

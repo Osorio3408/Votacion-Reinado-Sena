@@ -9,7 +9,10 @@ import { OptionsAlert } from "../../helpers/ToastResp";
 import { OptionsSweetAlert } from "../../helpers/ToastResp";
 import { useNavigate } from "react-router-dom";
 import { HomeEs } from "../HomeEs/HomeEs";
+import io from "socket.io-client";
 const Swal = require('sweetalert2')
+
+const socket = io('https://projectvotessena.azurewebsites.net')
 
 
 export const Body = () => {
@@ -41,7 +44,6 @@ export const Body = () => {
           .patch(`${postVotos}/${id}/${userId}`)
           .then((responde) => {
             setShowComponent(true);
-            // toast.success("Gracias por votar!", OptionsAlert);
             localStorage.removeItem("id_votante");
           })
           .catch((err) => {
@@ -57,7 +59,7 @@ export const Body = () => {
         setShowComponent(false);
         toast.success("gracias por tu voto", OptionsAlert)
         navigate('/')
-      }, 5000);
+      }, 1000);
 
     }
   }, [showComponent])

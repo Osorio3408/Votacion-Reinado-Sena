@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Validation />} />
-          <Route path="/card" element={<Body />} />
+          <Route path="/card" element={<Body/>} />
           <Route path="/results" element={<Results />} />
           <Route path="/form" element={<Form />} />
           <Route path="/Profile" element={<Profile />} />

@@ -20,11 +20,13 @@ export const Validation = () => {
       setIsBtn(true)
       if (idNumber === "5551") {
         setTimeout(() => {
+          localStorage.setItem("id_votante", JSON.stringify(idNumber));
           setIsBtn(false)
           navigate("/results");
         }, 1000);
       } else if (idNumber === "123") {
         setTimeout(() => {
+          localStorage.setItem("id_votante", JSON.stringify(idNumber));
           setIsBtn(false)
           navigate("/form");
         }, 1000)
@@ -34,6 +36,7 @@ export const Validation = () => {
           .then(({ data }) => {
             if (data.status === false) {
               toast.error("Perdon tu ya votaste", OptionsAlert);
+              setIsBtn(false)
             } else {
               localStorage.setItem("id_votante", JSON.stringify(idNumber));
               navigate("/card");
@@ -48,16 +51,10 @@ export const Validation = () => {
           });
       }
     } else {
+       setIsBtn(false)
       toast.error("Ingresa tú número de indentificación!", OptionsAlert);
     }
   };
-
-  useEffect(() =>{
-    let userId = JSON.parse(localStorage.getItem("id_votante"));
-    if (userId > 0) {
-      navigate("/card");
-    }
-  },[])
 
   return (
     <div>
